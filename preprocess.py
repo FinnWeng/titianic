@@ -105,7 +105,7 @@ class Preprocess:
         ticket[ 'Ticket' ] = full[ 'Ticket' ].map( self.cleanTicket )
         ticket = pd.get_dummies( ticket[ 'Ticket' ] , prefix = 'Ticket' )
 
-        print(ticket.head())
+        # print(ticket.head())
 
         family = pd.DataFrame()
 
@@ -134,7 +134,7 @@ class Preprocess:
         train_valid_y = titanic.Survived
         test_X = full_X[ 891: ]
 
-        return train_valid_X, train_valid_y, test_X
+        return train_valid_X.to_numpy(), train_valid_y.to_numpy(), test_X.to_numpy()
 
 
 
