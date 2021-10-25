@@ -107,9 +107,11 @@ if __name__ == "__main__":
 
     # print(model.summary())
 
+    model.load_weights(config.model_path)
+
 
     hist = model.fit(ds_train,
-            epochs=10, 
+            epochs=1, 
             steps_per_epoch=config.steps_per_epoch,
             callbacks = callback_list
             ).history
@@ -118,5 +120,13 @@ if __name__ == "__main__":
 
     print(last_predict)
     print(last_predict.shape) # (418,)
+
+
+    output = pd.DataFrame({'PassengerId':test.PassengerId,
+                       'Survived':last_predict
+                        })
+
+    output.to_csv('predict.csv', index = False)
+    print("save to csv!!")
 
 
